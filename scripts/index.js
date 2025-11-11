@@ -40,3 +40,19 @@ let score = 0;
 
 //Initializing time
 let time = 10;
+
+/*console.dir(document);
+
+const btn = document.getElementById("btn1");
+
+btn.addEventListener("click", function(){
+    console.log("You clicked the button");
+})
+
+btn.addEventListener("mouseover", function(){
+    btn.innerText = "Mouse overed";
+})
+
+btn.addEventListener("mouseout", function(){
+    btn.innerText = "Mouse moved";
+})*/
