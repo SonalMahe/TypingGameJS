@@ -11,7 +11,7 @@ const difficultySelect = document.getElementById("difficulty");
 
 // Array
 const words = [
-    "dependent", "dog", "superficial", "admit", "juice", "javascript", "developer",
+    "dependent", "delhi", "india", "admit", "juice", "javascript","react", "developer",
     "airplane", "great", "fun", "manipulate", "cat", "transition", "school", "computer",
     "programming", "drag", "loving", "north", "test", "icecream", "sweden", "entertainment"
 ];
