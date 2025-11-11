@@ -25,7 +25,7 @@ let score = 0;
 //initializing time
 let time =10; 
 
-/*//Initializing time (Can you tell me how i make a change in difficulty selection?)
+/*//Initializing time (Can you tell me how i make a change in difficulty selection?) Do i need to create another text.eventlistener for Medium n Hard levels??
 const difficulty = {
   easy: 10,
   medium: 5,
@@ -48,30 +48,31 @@ function updateScore() {
     scoreEl.innerHTML = score; // set the new score in UI
 }
 
-//Event listner for typing input- (by default and easy)
-text.addEventListener("input", function (e) {
+//Event listener for typing input- (by default and easy)
+text.addEventListener("input", function(e) {
     const enteredText = e.target.value.trim();
     if (enteredText === randomWord) // check if user entered text matches the random text.
     {
         updateScore(); // update the score
         addWordToDOM(words); // call the function to display new random word.
+        e.target.value = ""; // empty the input field.
         time += 5; // increase the time with 5 
         timeEl.innerHTML = time; // display latest time in UI.
-        e.target.value = ""; // empty the input field.
     }
 })
-//Add event listener to settings button to hide the settings-(optional)
-  settingsBtn.addEventListener("click", function (e) {
+
+//Add event listener to settings button to hide the settingsbtn-(optional)
+  settingsBtn.addEventListener("click", function(e) {
     settings.style.display = 'none';
 })
 
-  settingsBtn.addEventListener("dblclick", function (e) {
+  settingsBtn.addEventListener("dblclick", function(e) {
     settings.style.display = 'flex';
 })
 
 //Update time every time.
 function updateTime() {
-    const timeInterval = setInterval(function () {
+    const timeInterval = setInterval(function() {
         time--; // reduce time by every sec
         timeEl.innerHTML = time; // update the time in UI
         if (time === 0) // if time goes out
@@ -91,7 +92,7 @@ function gameOver() {
 }
 
 
-/*//Changes in settingsForm so that you can change in difficulty( medium optional)
+/*//Changes in settingsForm so that you can change in difficulty( Medium & Hard Levels) (optional)
 settingsForm.addEventListener("click" , function(e) {
       
 
@@ -106,8 +107,6 @@ settingsForm.addEventListener("click" , function(e) {
         e.target.value = ""; // empty the input field.
     }
 })
-
-
 })*/
 
 addWordToDOM(words);
