@@ -13,7 +13,7 @@ const difficultySelect = document.getElementById("difficulty");
 const words = [
     "dependent", "dog", "superficial", "admit", "juice", "javascript", "developer",
     "airplane", "great", "fun", "manipulate", "cat", "transition", "school", "computer",
-    "programming", "drag", "loving", "north", "test", "icecream","sweden","entertainment"
+    "programming", "drag", "loving", "north", "test", "icecream", "sweden", "entertainment"
 ];
 
 //Initializing word
@@ -22,8 +22,19 @@ let randomWord;
 //Initializing score
 let score = 0;
 
-//Initializing time
-let time = 10;
+//initializing time
+let time =10; 
+
+/*//Initializing time (Can you tell me how i make a change in difficulty selection?)
+const difficulty = {
+  easy: 10,
+  medium: 5,
+  hard: 3
+};
+
+// To change difficulty-
+const currentLevel = difficulty.easy;
+let time = currentLevel;*/
 
 //Add world to DOM.
 function addWordToDOM(words) {
@@ -31,30 +42,30 @@ function addWordToDOM(words) {
     word.innerHTML = randomWord;
 }
 
-// to update score
+// to update score-
 function updateScore() {
     score++; // increase the score by 1.
     scoreEl.innerHTML = score; // set the new score in UI
 }
 
-//Event listner for typing input
+//Event listner for typing input- (by default and easy)
 text.addEventListener("input", function (e) {
     const enteredText = e.target.value.trim();
     if (enteredText === randomWord) // check if user entered text matches the random text.
     {
         updateScore(); // update the score
         addWordToDOM(words); // call the function to display new random word.
-        time += 3; // increate the time with 5 
+        time += 5; // increase the time with 5 
         timeEl.innerHTML = time; // display latest time in UI.
         e.target.value = ""; // empty the input field.
     }
 })
-
-settingsBtn.addEventListener("click", function (e) {
+//Add event listener to settings button to hide the settings-(optional)
+  settingsBtn.addEventListener("click", function (e) {
     settings.style.display = 'none';
 })
 
-settingsBtn.addEventListener("dblclick", function (e) {
+  settingsBtn.addEventListener("dblclick", function (e) {
     settings.style.display = 'flex';
 })
 
@@ -73,11 +84,31 @@ function updateTime() {
 
 function gameOver() {
     endgameEl.innerHTML = `
-    <h1> game over </h1>
+    <h1> Game Over </h1>
     <p> Your final score is ${score} </p>
     <button onclick="location.reload()"> Play Again </button>`;
+    endgameEl.style.display = "flex";
 }
 
+
+/*//Changes in settingsForm so that you can change in difficulty( medium optional)
+settingsForm.addEventListener("click" , function(e) {
+      
+
+    text.addEventListener("input", function (e) {
+    const enteredText = e.target.value.trim();
+    if (enteredText === randomWord) // check if user entered text matches the random text.
+    {
+        updateScore(); // update the score
+        addWordToDOM(words); // call the function to display new random word.
+        time += 3; // increase the time with 3
+        timeEl.innerHTML = time; // display latest time in UI.
+        e.target.value = ""; // empty the input field.
+    }
+})
+
+
+})*/
 
 addWordToDOM(words);
 updateTime();
