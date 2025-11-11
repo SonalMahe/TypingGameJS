@@ -11,25 +11,9 @@ const difficultySelect = document.getElementById("difficulty");
 
 // Array
 const words = [
-  "dependent",
-  "dog",
-  "superficial",
-  "admit",
-  "juice",
-  "javascript",
-  "developer",
-  "airplane",
-  "great",
-  "fun",
-  "manipulate",
-  "cat",
-  "transition",
-  "school",
-  "computer",
-  "programming",
-  "drag",
-  "loving",
-  "north",
+    "dependent", "dog", "superficial", "admit", "juice", "javascript", "developer",
+    "airplane", "great", "fun", "manipulate", "cat", "transition", "school", "computer",
+    "programming", "drag", "loving", "north", "test", "icecream","sweden","entertainment"
 ];
 
 //Initializing word
@@ -41,18 +25,59 @@ let score = 0;
 //Initializing time
 let time = 10;
 
-/*console.dir(document);
+//Add world to DOM.
+function addWordToDOM(words) {
+    randomWord = words[Math.floor(Math.random() * words.length)];
+    word.innerHTML = randomWord;
+}
 
-const btn = document.getElementById("btn1");
+// to update score
+function updateScore() {
+    score++; // increase the score by 1.
+    scoreEl.innerHTML = score; // set the new score in UI
+}
 
-btn.addEventListener("click", function(){
-    console.log("You clicked the button");
+//Event listner for typing input
+text.addEventListener("input", function (e) {
+    const enteredText = e.target.value.trim();
+    if (enteredText === randomWord) // check if user entered text matches the random text.
+    {
+        updateScore(); // update the score
+        addWordToDOM(words); // call the function to display new random word.
+        time += 3; // increate the time with 5 
+        timeEl.innerHTML = time; // display latest time in UI.
+        e.target.value = ""; // empty the input field.
+    }
 })
 
-btn.addEventListener("mouseover", function(){
-    btn.innerText = "Mouse overed";
+settingsBtn.addEventListener("click", function (e) {
+    settings.style.display = 'none';
 })
 
-btn.addEventListener("mouseout", function(){
-    btn.innerText = "Mouse moved";
-})*/
+settingsBtn.addEventListener("dblclick", function (e) {
+    settings.style.display = 'flex';
+})
+
+//Update time every time.
+function updateTime() {
+    const timeInterval = setInterval(function () {
+        time--; // reduce time by every sec
+        timeEl.innerHTML = time; // update the time in UI
+        if (time === 0) // if time goes out
+        {
+            clearInterval(timeInterval);
+            gameOver();
+        }
+    }, 1000)
+}
+
+function gameOver() {
+    endgameEl.innerHTML = `
+    <h1> game over </h1>
+    <p> Your final score is ${score} </p>
+    <button onclick="location.reload()"> Play Again </button>`;
+}
+
+
+addWordToDOM(words);
+updateTime();
